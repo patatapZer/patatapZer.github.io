@@ -12,6 +12,11 @@ var params = {
   y: 0,
 }
 
+var params1 = {
+  width: 0,
+  height: 0,
+}
+
 function setup(){
   createCanvas(windowWidth, windowHeight)
   noStroke();
@@ -23,12 +28,28 @@ function draw(){
   fill(color)
   ellipse(params.x, height/2-50, params.width, 6)
 
+  rect(windowWidth/2,windowHeight/2,params1.width,params1.height)
+
 }
 
 
 function windowResized(){
   resizeCanvas(windiwWidth, windowHeight)
 }
+
+function keyTyped(){
+if (key === 'r') {
+    color = random( colors );
+    TweenMax.fromTo( params1, .3, {
+      width: 300,
+      height: 300
+    },
+      {
+        width: 0,
+        height: 0,
+      onComplete: reduce,
+    })
+  }}
 
 
 function mousePressed(){
@@ -51,5 +72,3 @@ function reduce(){
     width: 0
   })
 }
-
-
